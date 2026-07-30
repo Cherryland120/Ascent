@@ -14,36 +14,40 @@ fn create_operation()-> Operation{
 fn main() {
     println!("Welcome to RustyBeer!");
     let mut input = String::new();
-    let mut operation = create_operation();
 
-    println!("Enter first input:");
-    io::stdin().read_line(&mut input).expect("Failed to read the line");
-    operation.left = input.trim().parse::<i32>().expect("That's not a number");
-    io::stdout().flush().unwrap();
-    input.clear();
+    while input == "" {
+        let mut operation = create_operation();
 
-    println!("Enter operator: ");
-    io::stdin().read_line(&mut input).expect("Failed to read the line");
-    operation.operator = input.trim().parse::<char>().expect("That's not a character");
-    io::stdout().flush().unwrap();
-    input.clear();
+        println!("Enter first input:");
+        io::stdin().read_line(&mut input).expect("Failed to read the line");
+        operation.left = input.trim().parse::<i32>().expect("That's not a number");
+        io::stdout().flush().unwrap();
+        input.clear();
 
-    println!("Enter second input: ");
-    io::stdin().read_line(&mut input).expect("Failed to read the line");
-    operation.right = input.trim().parse::<i32>().expect("That's not a number");
-    input.clear();
+        println!("Enter operator: ");
+        io::stdin().read_line(&mut input).expect("Failed to read the line");
+        operation.operator = input.trim().parse::<char>().expect("That's not a character");
+        io::stdout().flush().unwrap();
+        input.clear();
 
-    if operation.operator == '+'{
-        println!("The answer is: {}", operation.left + operation.right);
+        println!("Enter second input: ");
+        io::stdin().read_line(&mut input).expect("Failed to read the line");
+        operation.right = input.trim().parse::<i32>().expect("That's not a number");
+        input.clear();
+
+        match operation.operator {
+            '+' => println!("The answer is: {}", operation.left + operation.right),
+            '-' => println!("The answer is: {}", operation.left - operation.right),
+            '*' => println!("The answer is: {}", operation.left * operation.right),
+            '/' => println!("The answer is: {}", operation.left / operation.right),
+            _ => println!("Invalid operator")
+        };
+
+        println!("Would you like another calculation? (y/n)");
+        io::stdin().read_line(&mut input).expect("Answer not applicable");
+        if input.trim().parse::<char>().expect("That's not a character") == 'y'{
+            input.clear();
+        }
+        else { input = "q".to_string(); }
     }
-    else if operation.operator == '-'{
-        println!("The answer is: {}", operation.left - operation.right);
-    }
-    else if operation.operator == '*'{
-        println!("The answer is: {}", operation.left * operation.right);
-    }
-    else if operation.operator == '/'{
-        println!("The answer is: {}", operation.left / operation.right);
-    }
-
 }
