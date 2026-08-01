@@ -1,0 +1,13 @@
+[
+  {
+    "id": "cli-calculator",
+    "name": "cli-calculator",
+    "url": "cli-calculator.wasm"
+  }
+,
+  {
+    "id": "todo-list",
+    "name": "todo-list",
+    "url": "todo-list.wasm"
+  }
+]
