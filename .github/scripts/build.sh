@@ -14,10 +14,10 @@ for d in */ ; do
         NAME=$(grep '^name' Cargo.toml | head -1 | cut -d '"' -f 2)
         
         echo "Building $NAME..."
-        cargo build --target wasm32-wasi --release
+        cargo build --target wasm32-wasip1 --release
         
         # Copy the resulting .wasm file to public directory
-        cp target/wasm32-wasi/release/$NAME.wasm ../public/
+        cp target/wasm32-wasip1/release/$NAME.wasm ../public/
         
         cd ..
         

@@ -20,7 +20,7 @@ jobs:
       - name: Install Rust
         uses: dtolnay/rust-toolchain@stable
         with:
-          targets: wasm32-wasi
+          targets: wasm32-wasip1
 
       - name: Build WASM and Generate JSON
         run: bash .github/scripts/build.sh
